@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from "@emotion/styled";
 import ImgCrypto from './img/img-crypto.png';
+import Form from './components/Form';
 
 const Container = styled.div`
   max-width: 900px;
@@ -43,7 +44,10 @@ function App() {
   return (
     <Container>
       <Image src={ImgCrypto} alt="Image Crypto"/>
-      <Heading>Desde la APP</Heading>
+      <div>
+        <Heading>Desde la APP</Heading>
+        <Form/>
+      </div>
     </Container>
   )
 }

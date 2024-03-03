@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import useSelectCoin from '../hooks/useSelectCoin';
 import listCoins from '../data/listCoins.js';
+import Error from './Error.jsx';
 
 
 const InputSubmit = styled.input`
@@ -24,11 +25,12 @@ const InputSubmit = styled.input`
 `;
 
 
-const Form = () => {
+const Form = ({setCoins}) => {
   const [ listCrypto, setCrypto ] = useState([]);
+  const [ error, setError ] = useState(false);
 
-  const [ coin, SelectCoin ] = useSelectCoin('Select your Coin', listCoins);
-  const [ crypto, SelectCrypto ] = useSelectCoin('Select your Cryptocurrency', listCrypto);
+  const [ coinSelected, SelectCoin ] = useSelectCoin('Select your Coin', listCoins);
+  const [ cryptoSelected, SelectCrypto ] = useSelectCoin('Select your Cryptocurrency', listCrypto);
 
   useEffect(() => {
     const getCrypto = async () => {
@@ -47,7 +49,6 @@ const Form = () => {
       });
 
       // set list with data
-      console.log(listCrypto);
       setCrypto(arrayCryptos);
     }
 
@@ -58,22 +59,31 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if ([coin, crypto].includes('')) {
-      console.log('ERROR');
-
+    // validate selected values in the combos
+    if ([coinSelected, cryptoSelected].includes('')) {
+      setError(true);
       return false;
     }
 
+    setError(false);
+    setCoins({
+      coinSelected,
+      cryptoSelected
+    });
   }
 
+
   return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <SelectCoin/>
-      <SelectCrypto/>
-      <InputSubmit type="submit" value="Cotizar"/>
-    </form>
+    <>
+    { error && <Error>Todos los campos son obligatorios</Error> }
+      <form
+        onSubmit={handleSubmit}
+      >
+        <SelectCoin/>
+        <SelectCrypto/>
+        <InputSubmit type="submit" value="Cotizar"/>
+      </form>
+    </>
   )
 }
 

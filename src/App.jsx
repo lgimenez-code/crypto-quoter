@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from "@emotion/styled";
 import ImgCrypto from './img/img-crypto.png';
 import Form from './components/Form';
+import Results from './components/Results';
 
 const Container = styled.div`
   max-width: 900px;
@@ -41,12 +42,35 @@ const Heading = styled.h1`
 `;
 
 function App() {
+  const [ coins, setCoins ] = useState({});
+  const [ results, setResults ] = useState({})
+
+  useEffect(() => {
+    if (Object.keys(coins).length > 0) {
+
+      const quoteCrypto = async () => {
+        const { coinSelected, cryptoSelected } = coins;
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoSelected.Code}&tsyms=${coinSelected.Id}`;
+        const response = await fetch(url);
+        const results = await response.json();
+
+        setResults(results.DISPLAY[cryptoSelected.Code][coinSelected.Id]);
+      }
+
+      quoteCrypto();
+    }
+
+  }, [coins]);
+
   return (
     <Container>
       <Image src={ImgCrypto} alt="Image Crypto"/>
       <div>
-        <Heading>Desde la APP</Heading>
-        <Form/>
+        <Heading>Quote cryptocurrencies instantly</Heading>
+        <Form
+          setCoins={setCoins}
+        />
+        { results.PRICE && <Results result={results}/> }
       </div>
     </Container>
   )

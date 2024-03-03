@@ -21,17 +21,22 @@ const CustomSelect = styled.select`
 
 // custom Hooks
 const useSelectCoin = (label, options) => {
+  const [ state, setState ] = useState({});
 
-  const [ state, setState ] = useState('');
+  // event
+  const handleChange = (e) => {
+    const filterValue = options.find(item => item.Id == e.target.value);
+    setState(filterValue);
+  }
 
   const SelectCoin = () => (
     <>
       <CustomLabel>{ label }</CustomLabel>
       <CustomSelect
-        value={state}
-        onChange={ e => setState(e.target.value) }
+        value={state.Id}
+        onChange={ handleChange }
       >
-        <option value="">Select</option>
+        <option value="0">Select</option>
         {
           options.map( option => (
             <option

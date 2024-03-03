@@ -72,7 +72,6 @@ const Form = () => {
     >
       <SelectCoin/>
       <SelectCrypto/>
-
       <InputSubmit type="submit" value="Cotizar"/>
     </form>
   )

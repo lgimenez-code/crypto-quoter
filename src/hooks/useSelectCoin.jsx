@@ -23,7 +23,6 @@ const CustomSelect = styled.select`
 const useSelectCoin = (label, options) => {
 
   const [ state, setState ] = useState('');
-  console.log(options);
 
   const SelectCoin = () => (
     <>
@@ -34,14 +33,14 @@ const useSelectCoin = (label, options) => {
       >
         <option value="">Select</option>
         {
-          options.lenght > 0 ? options.map( option => (
+          options.map( option => (
             <option
               key={option.Id}
               value={option.Id}
             >
               {option.Name}
             </option>
-          )) : null
+          )) 
         }
       </CustomSelect>
     </>

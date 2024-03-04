@@ -1,8 +1,3 @@
-# React + Vite
+Deploy: https://crypto-quoter-rho.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![imagen](https://github.com/lgimenez-code/crypto-quoter/assets/46572620/9f7653d4-f358-492b-88fc-07e59b05e5b4)

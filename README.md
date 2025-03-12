@@ -1,3 +1,13 @@
+# Crypto App
+
+ a simple app to check the check the cryptocurrency quote.
+
 Deploy: https://crypto-quoter-rho.vercel.app/
 
-![imagen](https://github.com/lgimenez-code/crypto-quoter/assets/46572620/9f7653d4-f358-492b-88fc-07e59b05e5b4)
+<img src="https://github.com/user-attachments/assets/b2189b02-89bb-401d-a2ae-bb013b8f0969" height="500px" />
+
+## Run localy
+
+```bash
+npm run dev
+```
